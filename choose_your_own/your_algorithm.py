@@ -28,15 +28,27 @@ plt.show()
 ################################################################################
 
 
-### your code here!  name your classifier object clf if you want the 
+### your code here!  name your classifier object clf if you want the
 ### visualization code (prettyPicture) to show you the decision boundary
 
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 
+# Initialize the DT classifier and train it
+dt_clf = DecisionTreeClassifier(min_samples_split=40)
+dt_clf.fit(features_train, labels_train)
 
+# Initialize the AB classifier and train it
+clf = AdaBoostClassifier(base_estimator=dt_clf)
+clf.fit(features_train, labels_train)
 
+# Get the prediction of the features to test
+pred = clf.predict(features_test)
 
-
-
+# Compute the accuracy
+accuracy = accuracy_score(labels_test, pred)
+print "accuracy is:", accuracy
 
 try:
     prettyPicture(clf, features_test, labels_test)

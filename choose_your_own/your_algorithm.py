@@ -35,9 +35,8 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
-# Initialize the DT classifier and train it
-dt_clf = DecisionTreeClassifier(min_samples_split=40)
-dt_clf.fit(features_train, labels_train)
+# Initialize the DT classifier with custom parameters
+dt_clf = DecisionTreeClassifier(max_depth=3, min_samples_split=40)
 
 # Initialize the AB classifier and train it
 clf = AdaBoostClassifier(base_estimator=dt_clf)

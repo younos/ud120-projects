@@ -7,13 +7,23 @@ sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 
 
-### read in data dictionary, convert to numpy array
+### read in data dictionary
 data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
+### remove outlier 'TOTAL'
+data_dict.pop('TOTAL')
+### convert to numpy array
 features = ["salary", "bonus"]
 data = featureFormat(data_dict, features)
 
+print max(data, key=lambda t: t[0])
+
 
 ### your code below
+for point in data:
+    salary = point[0]
+    bonus = point[1]
+    matplotlib.pyplot.scatter( salary, bonus )
 
-
-
+matplotlib.pyplot.xlabel("salary")
+matplotlib.pyplot.ylabel("bonus")
+matplotlib.pyplot.show()

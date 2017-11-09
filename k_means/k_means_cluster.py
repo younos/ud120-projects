@@ -48,11 +48,22 @@ data_dict.pop("TOTAL", 0)
 ### can be any key in the person-level dictionary (salary, director_fees, etc.)
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
-feature_3 = "total_payments"
+#feature_3 = "total_payments"
 poi  = "poi"
-features_list = [poi, feature_1, feature_2, feature_3]
+features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
+
+
+### rescale features
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+finance_features = scaler.fit_transform(finance_features)
+###  what would be the rescaled value of a 'salary' feature an initial value of $200,000?
+### and an 'exercised_stock_options' of $1 million?
+rescaled_sample = scaler.transform(numpy.array([[200000, 1000000]]))
+print "A salary of 200'000 would have a rescaled value of", rescaled_sample[0][0]
+print "An exercised_stock_options of 1'000'000 would have a rescaled value of", rescaled_sample[0][1]
 
 
 ### cluster here; create predictions of the cluster labels

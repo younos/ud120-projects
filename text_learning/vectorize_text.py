@@ -29,7 +29,7 @@ from_chris = open("from_chris.txt", "r")
 from_data = []
 word_data = []
 
-stopwords = ["sara", "shackleton", "chris", "germani"]
+stopwords = ["sara", "shackleton", "chris", "germani", "sshacklensf", "cgermannsf"]
 
 for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
@@ -40,7 +40,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         parsed_text = parseOutText(email)
 
         ### use str.replace() to remove any instances of the words
-        ### ["sara", "shackleton", "chris", "germani"]
+        ### ["sara", "shackleton", "chris", "germani", "sshacklensf", "cgermannsf"]
         for word in stopwords:
             if(word in parsed_text):
                 parsed_text = parsed_text.replace(word, '')

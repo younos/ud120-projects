@@ -81,6 +81,11 @@ X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
 print "done in %0.3fs" % (time() - t0)
 
+###############################################################################
+# Udacity question
+# How much of the variance is explained by the first principal component? The second?
+ex_va = pca.explained_variance_ratio_
+print ex_va[0], "of the variance is explained by the 1st PC and", ex_va[1], "by the 2nd PC."
 
 ###############################################################################
 # Train a SVM classification model
